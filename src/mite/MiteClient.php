@@ -98,6 +98,14 @@ class MiteClient
   }
 
   /**
+   * @return mixed
+   */
+  public function getServices()
+  {
+    return $this->get('services');
+  }
+  
+  /**
    * @param string $url
    * @param array $data
    * @param array $headers
