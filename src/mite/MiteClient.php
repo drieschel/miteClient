@@ -49,7 +49,7 @@ class MiteClient
    */
   public function getCustomer($id)
   {
-    return $this->get('customers/' . $id);
+    return $this->get('customers/' . $id, array(), array(), true);
   }
   
   /**
@@ -58,7 +58,7 @@ class MiteClient
    */
   public function getProject($id)
   {
-    return $this->get('projects/' . $id);
+    return $this->get('projects/' . $id, array(), array(), true);
   }
   
   /**
@@ -101,15 +101,16 @@ class MiteClient
    * @param string $url
    * @param array $data
    * @param array $headers
+   * @param boolean $singleEntry
    */
-  protected function get($url, array $data = array(), array $headers = array())
+  protected function get($url, array $data = array(), array $headers = array(), $singleEntry = false)
   {
     $data['api_key'] = $this->apiKey;
     $response = $this->pest->get($url . '.' . $this->responseFormat, $data, $headers);    
     $elementsCount = count($response);    
     if($elementsCount == 1)
     {
-      return array(0 => array_pop($response));
+      return $singleEntry ? array_pop($response) : array(0 => array_pop($response));
     }
     else if ($elementsCount > 1)
     {
