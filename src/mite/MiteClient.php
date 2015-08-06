@@ -65,9 +65,18 @@ class MiteClient
    * @param array $parameters
    * @return mixed
    */
-  public function getProjects(array $parameters = array())
+  public function getProjectsBy(array $parameters = array())
   {
     return $this->get('projects', $parameters);
+  }
+  
+  /**
+   * @param integer $customerId
+   * @return mixed
+   */
+  public function getProjectsByCustomer($customerId)
+  {
+    return $this->getProjectsBy(array('customer_id' => $customerId));
   }
   
   /**
