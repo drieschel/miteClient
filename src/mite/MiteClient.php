@@ -85,7 +85,7 @@ class MiteClient
    */
   protected function getArchivedProjectsBy(array $parameters = array())
   {
-    return $this->get('projects', $parameters);
+    return $this->get('projects/archived', $parameters);
   }    
   
   /**
@@ -94,7 +94,7 @@ class MiteClient
    */
   public function getArchivedProjectsByCustomer($customerId)
   {
-    return $this->getProjectsBy(array('customer_id' => $customerId));
+    return $this->getArchivedProjectsBy(array('customer_id' => $customerId));
   }
   
   /**
