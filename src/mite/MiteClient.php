@@ -65,7 +65,7 @@ class MiteClient
    * @param array $parameters
    * @return mixed
    */
-  public function getProjectsBy(array $parameters = array())
+  protected function getProjectsBy(array $parameters = array())
   {
     return $this->get('projects', $parameters);
   }
@@ -75,6 +75,24 @@ class MiteClient
    * @return mixed
    */
   public function getProjectsByCustomer($customerId)
+  {
+    return $this->getProjectsBy(array('customer_id' => $customerId));
+  }
+ 
+  /**
+   * @param array $parameters
+   * @return mixed
+   */
+  protected function getArchivedProjectsBy(array $parameters = array())
+  {
+    return $this->get('projects', $parameters);
+  }    
+  
+  /**
+   * @param integer $customerId
+   * @return mixed
+   */
+  public function getArchivedProjectsByCustomer($customerId)
   {
     return $this->getProjectsBy(array('customer_id' => $customerId));
   }
