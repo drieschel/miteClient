@@ -134,11 +134,11 @@ class MiteClient
     $data['api_key'] = $this->apiKey;
     $response = $this->pest->get($url . '.' . $this->responseFormat, $data, $headers);    
     $elementsCount = count($response);    
-    if($elementsCount == 1)
+    if($singleEntry !== false)
     {
-      return $singleEntry ? array_pop($response) : array(0 => array_pop($response));
+      return array_pop($response);
     }
-    else if ($elementsCount > 1)
+    else
     {
       $resorted = array();
       foreach($response AS $i => $data)
