@@ -132,21 +132,17 @@ class MiteClient
   protected function get($url, array $data = array(), array $headers = array(), $singleEntry = false)
   {
     $data['api_key'] = $this->apiKey;
-    $response = $this->pest->get($url . '.' . $this->responseFormat, $data, $headers);    
-    $elementsCount = count($response);    
+    $response = $this->pest->get($url . '.' . $this->responseFormat, $data, $headers); 
     if($singleEntry !== false)
     {
       return array_pop($response);
     }
-    else
+
+    $resorted = array();
+    foreach($response AS $i => $data)
     {
-      $resorted = array();
-      foreach($response AS $i => $data)
-      {
         $resorted[$i] = array_pop($data);
-      }
-      return $resorted;
     }
-    return array();
+    return $resorted;
   }
 }
